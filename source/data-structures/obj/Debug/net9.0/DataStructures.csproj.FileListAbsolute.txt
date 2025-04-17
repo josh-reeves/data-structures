@@ -3,8 +3,6 @@ C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\D
 C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\DataStructures.runtimeconfig.json
 C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\DataStructures.dll
 C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\DataStructures.pdb
-C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\Webster.dll
-C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\Webster.pdb
 C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\obj\Debug\net9.0\DataStructures.csproj.AssemblyReference.cache
 C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\obj\Debug\net9.0\DataStructures.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\obj\Debug\net9.0\DataStructures.AssemblyInfoInputs.cache
@@ -17,6 +15,7 @@ C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\obj\D
 C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\obj\Debug\net9.0\DataStructures.genruntimeconfig.cache
 C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\obj\Debug\net9.0\ref\DataStructures.dll
 C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\LinkedList.dll
-C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\Oxford.dll
-C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\Oxford.pdb
 C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\LinkedList.pdb
+C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\HashTable.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\HashTable.pdb
+C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\obj\Debug\net9.0\DataStructures.sourcelink.json

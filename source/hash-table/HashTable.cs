@@ -1,13 +1,12 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
-namespace Oxford;
+namespace HashTable;
 
-public class Oxford<TKey, TValue> where TKey : notnull
+public class HashTable<TKey, TValue> where TKey : notnull
 {
     private LinkedList.LinkedList<Entry>[] entries;
     
-    public Oxford(uint capacity = 50)
+    public HashTable(uint capacity = 100)
     {
         Capacity = capacity;
 
@@ -17,13 +16,8 @@ public class Oxford<TKey, TValue> where TKey : notnull
 
     public uint Capacity { get; set; }
 
-    private uint Hash(TKey key)
-    {
-        uint hash = (uint)key.GetHashCode() % Capacity;
-
-        return hash;
-
-    }
+    private uint Hash(TKey key) =>
+        (uint)key.GetHashCode() % Capacity;
 
     public void Add(TKey key, TValue value)
     {

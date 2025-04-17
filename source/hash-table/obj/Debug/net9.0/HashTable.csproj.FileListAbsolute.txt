@@ -1,0 +1,16 @@
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\bin\Debug\net9.0\HashTable.deps.json
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\bin\Debug\net9.0\HashTable.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\bin\Debug\net9.0\HashTable.pdb
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\bin\Debug\net9.0\LinkedList.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\bin\Debug\net9.0\LinkedList.pdb
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\obj\Debug\net9.0\HashTable.csproj.AssemblyReference.cache
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\obj\Debug\net9.0\HashTable.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\obj\Debug\net9.0\HashTable.AssemblyInfoInputs.cache
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\obj\Debug\net9.0\HashTable.AssemblyInfo.cs
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\obj\Debug\net9.0\HashTable.csproj.CoreCompileInputs.cache
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\obj\Debug\net9.0\HashTable.sourcelink.json
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\obj\Debug\net9.0\HashTable.csproj.Up2Date
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\obj\Debug\net9.0\HashTable.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\obj\Debug\net9.0\refint\HashTable.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\obj\Debug\net9.0\HashTable.pdb
+C:\Users\JoshReeves\Documents\repos\data-structures\source\hash-table\obj\Debug\net9.0\ref\HashTable.dll

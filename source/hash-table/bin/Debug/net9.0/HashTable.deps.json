@@ -6,23 +6,12 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v9.0": {
-      "DataStructures/1.0.0": {
-        "dependencies": {
-          "HashTable": "1.0.0"
-        },
-        "runtime": {
-          "DataStructures.dll": {}
-        }
-      },
       "HashTable/1.0.0": {
         "dependencies": {
           "LinkedList": "1.0.0"
         },
         "runtime": {
-          "HashTable.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "HashTable.dll": {}
         }
       },
       "LinkedList/1.0.0": {
@@ -36,11 +25,6 @@
     }
   },
   "libraries": {
-    "DataStructures/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "HashTable/1.0.0": {
       "type": "project",
       "serviceable": false,

@@ -9,3 +9,4 @@ C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\obj\Debug
 C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\obj\Debug\net9.0\refint\LinkedList.dll
 C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\obj\Debug\net9.0\LinkedList.pdb
 C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\obj\Debug\net9.0\ref\LinkedList.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\obj\Debug\net9.0\LinkedList.sourcelink.json
