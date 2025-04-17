@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="data-structures/DataStructures.csproj" />
+  <Project Path="linked-list/LinkedList.csproj" />
+  <Project Path="hash-table/HashTable.csproj" />
+</Solution>

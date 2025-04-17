@@ -1,0 +1,11 @@
+C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\bin\Debug\net9.0\LinkedList.deps.json
+C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\bin\Debug\net9.0\LinkedList.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\bin\Debug\net9.0\LinkedList.pdb
+C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\obj\Debug\net9.0\LinkedList.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\obj\Debug\net9.0\LinkedList.AssemblyInfoInputs.cache
+C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\obj\Debug\net9.0\LinkedList.AssemblyInfo.cs
+C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\obj\Debug\net9.0\LinkedList.csproj.CoreCompileInputs.cache
+C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\obj\Debug\net9.0\LinkedList.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\obj\Debug\net9.0\refint\LinkedList.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\obj\Debug\net9.0\LinkedList.pdb
+C:\Users\JoshReeves\Documents\repos\data-structures\source\linked-list\obj\Debug\net9.0\ref\LinkedList.dll
