@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\HashSet\\HashSet.csproj",
+      "projectUniqueName": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\hash-set\\HashSet.csproj",
       "projectName": "HashSet",
-      "projectPath": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\HashSet\\HashSet.csproj",
+      "projectPath": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\hash-set\\HashSet.csproj",
       "packagesPath": "C:\\Users\\JoshReeves\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\HashSet\\obj\\",
+      "outputPath": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\hash-set\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\JoshReeves\\AppData\\Roaming\\NuGet\\NuGet.Config"

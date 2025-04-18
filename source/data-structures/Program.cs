@@ -21,13 +21,13 @@ class Program
         }
 
         stopwatch.Stop();
-        Trace.WriteLine("Oxford insertion of 100,000 elements completed in " + stopwatch.ElapsedTicks + "ticks.");
+        Trace.WriteLine("Oxford insertion of 100,000 elements completed in " + stopwatch.ElapsedTicks + " ticks.");
         stopwatch.Reset();
 
         stopwatch.Start();
         Trace.WriteLine(oxford.Retrieve("756"));
         stopwatch.Stop();
-        Trace.WriteLine("Oxford retrieval completed in " + stopwatch.ElapsedTicks + "ticks.");
+        Trace.WriteLine("Oxford retrieval completed in " + stopwatch.ElapsedTicks + " ticks.");
 
         stopwatch.Start();
 
@@ -38,13 +38,13 @@ class Program
         }
 
         stopwatch.Stop();
-        Trace.WriteLine("Dotnet insertion of 100,000 elements completed in " + stopwatch.ElapsedTicks + "ticks.");
+        Trace.WriteLine("Dotnet insertion of 100,000 elements completed in " + stopwatch.ElapsedTicks + " ticks.");
         stopwatch.Reset();
 
         stopwatch.Start();
         Trace.WriteLine(dotnet["99999"]);
         stopwatch.Stop();
-        Trace.WriteLine("Dotnet retrieval completed in " + stopwatch.ElapsedTicks + "ticks.");
+        Trace.WriteLine("Dotnet retrieval completed in " + stopwatch.ElapsedTicks + " ticks.");
 
     }
 
