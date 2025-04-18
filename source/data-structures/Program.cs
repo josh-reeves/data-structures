@@ -9,42 +9,42 @@ class Program
     {    
         Stopwatch stopwatch = new();
 
-        Dictionary<int, string> dotnet = new Dictionary<int, string>();
-        HashTable<int, string> oxford = new HashTable<int, string>();
+        Dictionary<string, string> dotnet = new Dictionary<string, string>();
+        HashTable<string, string> oxford = new HashTable<string, string>();
 
         stopwatch.Start();
         
         for (int i = 0; i < 100000; i++)
         {
-            oxford.Add(i, "Oxford: " + i);
+            oxford.Add(Convert.ToString(i), "Oxford: " + i);
 
         }
 
         stopwatch.Stop();
-        Trace.WriteLine("Oxford insertion of 100,000 elements completed in " + stopwatch.ElapsedTicks);
+        Trace.WriteLine("Oxford insertion of 100,000 elements completed in " + stopwatch.ElapsedTicks + "ticks.");
         stopwatch.Reset();
 
         stopwatch.Start();
-        Trace.WriteLine(oxford.Retrieve(99999));
+        Trace.WriteLine(oxford.Retrieve("756"));
         stopwatch.Stop();
-        Trace.WriteLine("Oxford retrieval completed in " + stopwatch.ElapsedTicks);
+        Trace.WriteLine("Oxford retrieval completed in " + stopwatch.ElapsedTicks + "ticks.");
 
         stopwatch.Start();
 
         for (int i = 0; i < 100000; i++)
         {
-            dotnet.Add(i, "Dotnet: " + i);
+            dotnet.Add(Convert.ToString(i), "Dotnet: " + i);
 
         }
 
         stopwatch.Stop();
-        Trace.WriteLine("Dotnet insertion of 100,000 elements completed in " + stopwatch.ElapsedTicks);
+        Trace.WriteLine("Dotnet insertion of 100,000 elements completed in " + stopwatch.ElapsedTicks + "ticks.");
         stopwatch.Reset();
 
         stopwatch.Start();
-        Trace.WriteLine(dotnet[99999]);
+        Trace.WriteLine(dotnet["99999"]);
         stopwatch.Stop();
-        Trace.WriteLine("Oxford retrieval completed in " + stopwatch.ElapsedTicks);
+        Trace.WriteLine("Dotnet retrieval completed in " + stopwatch.ElapsedTicks + "ticks.");
 
     }
 

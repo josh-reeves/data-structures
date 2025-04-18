@@ -1,29 +1,57 @@
 ﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace HashTable;
 
 public class HashTable<TKey, TValue> where TKey : notnull
 {
+    #region Fields
+    private int elements;
+    private double loadFactor;
+
     private LinkedList.LinkedList<Entry>[] entries;
     
-    public HashTable(uint capacity = 100)
+    #endregion
+
+    public HashTable(uint capacity = 4)
     {
         Capacity = capacity;
-
         entries = new LinkedList.LinkedList<Entry>[Capacity];
 
     }
 
     public uint Capacity { get; set; }
 
-    private uint Hash(TKey key) =>
+    private void Rehash()
+    {
+        Capacity = Convert.ToUInt32(entries.Length * 2);
+
+        LinkedList.LinkedList<Entry>[] temp = new LinkedList.LinkedList<Entry>[Capacity];
+
+        for (int i = 0; i < entries.Length - 1; i++)
+        {
+            if (entries[i] is not null)
+                foreach (Entry entry in entries[i])
+                {
+                    temp[Index(entry.Key)] ??= new LinkedList.LinkedList<Entry>();
+
+                    temp[Index(entry.Key)].Append(entry);
+
+                }
+        }
+                
+        entries = temp;
+
+    }
+
+    private uint Index(TKey key) =>
         (uint)key.GetHashCode() % Capacity;
 
     public void Add(TKey key, TValue value)
     {
         try
         {
-            entries[Hash(key)] ??= new LinkedList.LinkedList<Entry>();
+            entries[Index(key)] ??= new LinkedList.LinkedList<Entry>();
 
             if (Contains(key))
             {
@@ -32,7 +60,14 @@ public class HashTable<TKey, TValue> where TKey : notnull
                 return;
             }
 
-            entries[Hash(key)].Append(new Entry(key, value));
+            entries[Index(key)].Append(new Entry(key, value));
+
+            elements ++;
+
+            loadFactor = elements / entries.Length; 
+
+            if (loadFactor > 0.75)
+                Rehash();
                  
         }
         catch (Exception ex)
@@ -45,7 +80,7 @@ public class HashTable<TKey, TValue> where TKey : notnull
 
     public TValue? Retrieve(TKey key)
     {
-        foreach (Entry entry in entries[Hash(key)])
+        foreach (Entry entry in entries[Index(key)])
             if (EqualityComparer<TKey>.Default.Equals(entry.Key, key))
                 return entry.Value;
 
@@ -55,7 +90,7 @@ public class HashTable<TKey, TValue> where TKey : notnull
 
     public bool Contains(TKey key)
     {
-        foreach (Entry entry in entries[Hash(key)])
+        foreach (Entry entry in entries[Index(key)])
             if (EqualityComparer<TKey>.Default.Equals(entry.Key, key))
                 return true;
 
