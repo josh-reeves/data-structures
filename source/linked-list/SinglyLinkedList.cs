@@ -2,7 +2,7 @@
 
 namespace LinkedList;
 
-public class LinkedList<T> : IEnumerable
+public class SinglyLinkedList<T> : IEnumerable
 {
     #region Fields
     private Node<T>? head;
@@ -11,7 +11,7 @@ public class LinkedList<T> : IEnumerable
     #endregion
 
     #region Constructor(s)
-    public LinkedList() {}
+    public SinglyLinkedList() {}
 
     #endregion
 
@@ -67,13 +67,13 @@ public class LinkedList<T> : IEnumerable
     private class LinkedListEnum : IEnumerator
     {
         #region Fields
-        private readonly LinkedList<T> list;
+        private readonly SinglyLinkedList<T> list;
         private Node<T>? iterator;
 
         #endregion
 
         #region  Constructor(s)
-        public LinkedListEnum(LinkedList<T> linkedList)
+        public LinkedListEnum(SinglyLinkedList<T> linkedList)
         {
             list = linkedList;
             iterator = list.head;

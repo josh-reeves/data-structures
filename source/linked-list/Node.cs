@@ -12,6 +12,7 @@ public class Node<T>
     #endregion
 
     #region Properties
+    public Node<T>? Prev {get; set; }
     public Node<T>? Next { get; set; }
     public T Data { get; set;}
 

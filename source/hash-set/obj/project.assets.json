@@ -1,11 +1,48 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "HashTable/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LinkedList": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/HashTable.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HashTable.dll": {}
+        }
+      },
+      "LinkedList/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/LinkedList.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LinkedList.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "HashTable/1.0.0": {
+      "type": "project",
+      "path": "../hash-table/HashTable.csproj",
+      "msbuildProject": "../hash-table/HashTable.csproj"
+    },
+    "LinkedList/1.0.0": {
+      "type": "project",
+      "path": "../linked-list/LinkedList.csproj",
+      "msbuildProject": "../linked-list/LinkedList.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "HashTable >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\JoshReeves\\.nuget\\packages\\": {}
@@ -31,7 +68,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\hash-table\\HashTable.csproj": {
+              "projectPath": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\hash-table\\HashTable.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

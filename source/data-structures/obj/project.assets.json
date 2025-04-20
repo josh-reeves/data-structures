@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net9.0": {
+      "HashSet/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "HashTable": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/HashSet.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HashSet.dll": {}
+        }
+      },
       "HashTable/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
@@ -28,6 +41,11 @@
     }
   },
   "libraries": {
+    "HashSet/1.0.0": {
+      "type": "project",
+      "path": "../hash-set/HashSet.csproj",
+      "msbuildProject": "../hash-set/HashSet.csproj"
+    },
     "HashTable/1.0.0": {
       "type": "project",
       "path": "../hash-table/HashTable.csproj",
@@ -41,6 +59,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "HashSet >= 1.0.0",
       "HashTable >= 1.0.0"
     ]
   },
@@ -69,6 +88,9 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
+            "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\hash-set\\HashSet.csproj": {
+              "projectPath": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\hash-set\\HashSet.csproj"
+            },
             "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\hash-table\\HashTable.csproj": {
               "projectPath": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\hash-table\\HashTable.csproj"
             }
