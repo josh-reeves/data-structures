@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Linq.Expressions;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using HashTable;
 
@@ -56,11 +58,8 @@ class Program
         stopwatch.Stop();
         Trace.WriteLine("Dotnet retrieval completed in " + stopwatch.ElapsedTicks + " ticks."); // ~8K ticks.
 
-        for (i = 0; i < Math.Round(sampleValues.Length * sampleUniqueness, MidpointRounding.ToPositiveInfinity); i++)
-        {   
-            sampleValues[i] = random.Next(0, int.MaxValue);
-
-        }
+        for (i = 0; i < Math.Round(sampleValues.Length * sampleUniqueness) - 1; i++)
+            sampleValues[i] = i;
 
         while (i < sampleValues.Length - 1)
         {
@@ -71,10 +70,7 @@ class Program
         }
 
         for (i = 0; i < sampleValues.Length - 1; i++)
-        {
             set.Add(sampleValues[i]);
-
-        }
 
     }
 

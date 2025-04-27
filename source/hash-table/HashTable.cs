@@ -66,7 +66,7 @@ public class HashTable<TKey, TValue> where TKey : notnull
     {
         SinglyLinkedList<Entry>[] temp = new SinglyLinkedList<Entry>[newCapacity];
 
-        for (int i = 0; i < entries.Length - 1; i++)
+        for (int i = 0; i < entries.Length; i++)
         {
             if (entries[i] is not null)
                 foreach (Entry entry in entries[i])
