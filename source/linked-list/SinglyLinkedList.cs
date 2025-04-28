@@ -15,6 +15,12 @@ public class SinglyLinkedList<T> : IEnumerable
 
     #endregion
 
+    #region Properties
+    public Node<T>? First { get => head; }
+    public Node<T>? Last { get => tail; }
+
+    #endregion
+
     #region Methods
     public void Prepend(T data)
     {

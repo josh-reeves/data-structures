@@ -1,7 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Linq.Expressions;
-using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
 using HashTable;
 
 namespace DataStructures;
@@ -17,7 +14,7 @@ class Program
         int[] sampleValues = new int[100000];
 
         Stopwatch stopwatch = new();
-        Random random = new();
+        StreamWriter logWriter = new (Path.Combine(Directory.GetCurrentDirectory(), "set.csv"));
         Dictionary<string, string> dotnet = new();
         HashTable<string, string> oxford = new();
         HashSet.HashSet<int> set = new();
@@ -58,19 +55,27 @@ class Program
         stopwatch.Stop();
         Trace.WriteLine("Dotnet retrieval completed in " + stopwatch.ElapsedTicks + " ticks."); // ~8K ticks.
 
-        for (i = 0; i < Math.Round(sampleValues.Length * sampleUniqueness) - 1; i++)
+        for (i = 0; i <= Math.Round(sampleValues.Length * sampleUniqueness) - 1; i++)
             sampleValues[i] = i;
 
-        while (i < sampleValues.Length - 1)
+        while (i < sampleValues.Length)
         {
-            sampleValues[i] = sampleValues[random.Next(0, i - 1)];
+            sampleValues[i] = sampleValues[sampleValues.Length - i]; /* The value of i will start at 74,999. This will start at 100,000 - i and tend 
+                                                                      *     toward 0 as i grows, copying the existing value at sampleValues[i] back
+                                                                      *     into the array a second time.*/
 
             i++;
             
         }
 
-        for (i = 0; i < sampleValues.Length - 1; i++)
+        // Reset i and attempt to add all values in sampleValues to set. 25,000 of these should be duplicate values.
+        for (i = 0; i < sampleValues.Length; i++) 
             set.Add(sampleValues[i]);
+
+        foreach (int num in set)
+            logWriter.WriteLine(num);
+
+       set.Dump();
 
     }
 

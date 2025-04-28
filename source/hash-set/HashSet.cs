@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Diagnostics;
-using System.Net.Http.Headers;
-using System.Numerics;
 using LinkedList;
 
 namespace HashSet;
@@ -12,7 +10,7 @@ public class HashSet<TValue> : IEnumerable
     private double loadFactor;
 
     private SinglyLinkedList<TValue>[] entries; // Internal data structure (i.e. "buckets").
-    
+
     #endregion
 
     #region Constructor(s)
@@ -157,6 +155,15 @@ public class HashSet<TValue> : IEnumerable
 
     }
 
+    public void Dump()
+    {
+        for (int i = 0; i < entries.Length; i++)
+            if (entries[i] is not null)
+                foreach (TValue entry in entries[i])
+                    Trace.WriteLine(entry);
+
+    }
+
     IEnumerator IEnumerable.GetEnumerator() => (IEnumerator) GetEnumerator();
 
     public IEnumerator GetEnumerator() => 
@@ -169,6 +176,7 @@ public class HashSet<TValue> : IEnumerable
     {
         private int iterator;
 
+        private Node<TValue>? node;
         private HashSet<TValue> set;
 
         public HashSetEnumerator(HashSet<TValue> hashSet)
@@ -183,19 +191,26 @@ public class HashSet<TValue> : IEnumerable
 
         public bool MoveNext()
         {
-            IEnumerator enumerator = set.entries.GetEnumerator();
+            while (set.entries[iterator] is null && iterator < set.entries.Length - 1)
+                iterator ++;
 
-            if (iterator >= set.entries.Length - 1)
+            if (iterator >= set.entries.Length)
                 return false;
-            
-            if (enumerator.MoveNext())
+
+            if (set.entries[iterator] is null)
+                return false;
+
+            node ??= set.entries[iterator].First;
+
+            Current = node.Data;
+
+            if (node?.Next is null)
             {
-                Current = enumerator.Current;
-                return true;
+                iterator ++;
+
+                node = null;
 
             }
-            
-            iterator ++;
 
             return true;
 
