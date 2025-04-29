@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 
 namespace LinkedList;
 
@@ -15,34 +16,40 @@ public class DoublyLinkedList<T> : IEnumerable
 
     #endregion
 
+    #region Properties
+    public Node<T>? First { get => head; }
+    public Node<T>? Last { get => tail; }
+
+    #endregion
+
     #region Methods
     public void Prepend(T data)
     {
-        Node<T> node = new Node<T>(data);
-
         if (head == null) // Add first node to head if it hasn't already been initialized.
         {
-            head = node;
+            head = new Node<T>(data);
 
             return;
 
         }
 
-        node.Next = head;
-        head.Prev = node;
-        head = node;
+        Node<T> temp = head;
 
-        tail ??= head;
+        head = new Node<T>(data) 
+        {
+            Next = temp
+            
+        };
+
+        temp.Prev = head;
 
     }
 
     public void Append(T data)
     {
-        Node<T> node = new Node<T>(data);
-
-        if (head == null) // Add first node to head if it hasn't already been initialized.
+        if (head is null) // Add first node to head if it hasn't already been initialized.
         {
-            head = node;
+            head = new Node<T>(data);
 
             return;
 
@@ -53,20 +60,39 @@ public class DoublyLinkedList<T> : IEnumerable
         while (tail.Next != null)
             tail = tail.Next;
 
-        tail.Next = node;
-        node.Prev = tail;
+        Node<T> temp = tail;
+
+        tail.Next = new Node<T>(data)
+        {
+            Prev = tail
+
+        };
+
+        tail = tail.Next;
+
+        tail.Prev = temp;
     
+    }
+
+    public void Remove(Node<T> node)
+    {
+        if (node.Next is not null)
+            node.Next.Prev = node.Prev;
+
+        if (node.Prev is not null)
+            node.Prev.Next = node.Next;
+
     }
 
     IEnumerator IEnumerable.GetEnumerator() => (IEnumerator) GetEnumerator();
 
     public IEnumerator GetEnumerator() => 
-        new LinkedListEnum(this);
+        new DoublyLinkedListEnum(this);
 
     #endregion
 
     #region Classes and Structs
-    private class LinkedListEnum : IEnumerator
+    private class DoublyLinkedListEnum : IEnumerator
     {
         #region Fields
         private readonly DoublyLinkedList<T> list;
@@ -75,7 +101,7 @@ public class DoublyLinkedList<T> : IEnumerable
         #endregion
 
         #region  Constructor(s)
-        public LinkedListEnum(DoublyLinkedList<T> linkedList)
+        public DoublyLinkedListEnum(DoublyLinkedList<T> linkedList)
         {
             list = linkedList;
             iterator = list.head;

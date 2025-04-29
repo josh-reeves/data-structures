@@ -44,7 +44,7 @@ public class SinglyLinkedList<T> : IEnumerable
 
     public void Append(T data)
     {
-        if (head == null) // Add first node to head if it hasn't already been initialized.
+        if (head is null) // Add first node to head if it hasn't already been initialized.
         {
             head = new Node<T>(data);
 
@@ -52,8 +52,7 @@ public class SinglyLinkedList<T> : IEnumerable
 
         }
 
-        if (tail is null)
-            tail = head;
+        tail ??= head;
 
         while (tail.Next != null)
             tail = tail.Next;
@@ -65,12 +64,12 @@ public class SinglyLinkedList<T> : IEnumerable
     IEnumerator IEnumerable.GetEnumerator() => (IEnumerator) GetEnumerator();
 
     public IEnumerator GetEnumerator() => 
-        new LinkedListEnum(this);
+        new SinglyLinkedListEnum(this);
 
     #endregion
 
     #region Classes and Structs
-    private class LinkedListEnum : IEnumerator
+    private class SinglyLinkedListEnum : IEnumerator
     {
         #region Fields
         private readonly SinglyLinkedList<T> list;
@@ -79,7 +78,7 @@ public class SinglyLinkedList<T> : IEnumerable
         #endregion
 
         #region  Constructor(s)
-        public LinkedListEnum(SinglyLinkedList<T> linkedList)
+        public SinglyLinkedListEnum(SinglyLinkedList<T> linkedList)
         {
             list = linkedList;
             iterator = list.head;

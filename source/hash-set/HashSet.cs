@@ -9,14 +9,14 @@ public class HashSet<TValue> : IEnumerable
     #region Fields
     private double loadFactor;
 
-    private SinglyLinkedList<TValue>[] entries; // Internal data structure (i.e. "buckets").
+    private DoublyLinkedList<TValue>[] entries; // Internal data structure (i.e. "buckets").
 
     #endregion
 
     #region Constructor(s)
     public HashSet(uint initialCapacity = 2)
     {
-        entries = new SinglyLinkedList<TValue>[initialCapacity];
+        entries = new DoublyLinkedList<TValue>[initialCapacity];
 
     }
 
@@ -42,7 +42,7 @@ public class HashSet<TValue> : IEnumerable
 
             if (entries is null)
             {
-                entries = new SinglyLinkedList<TValue>[value];
+                entries = new DoublyLinkedList<TValue>[value];
 
                 return;
 
@@ -65,14 +65,14 @@ public class HashSet<TValue> : IEnumerable
     /// </param>
     private void Rehash(uint newCapacity)
     {
-        SinglyLinkedList<TValue>[] temp = new SinglyLinkedList<TValue>[newCapacity];
+        DoublyLinkedList<TValue>[] temp = new DoublyLinkedList<TValue>[newCapacity];
 
         for (int i = 0; i < entries.Length; i++)
         {
             if (entries[i] is not null)
                 foreach (TValue entry in entries[i])
                 {
-                    temp[(uint)entry.GetHashCode() % newCapacity] ??= new SinglyLinkedList<TValue>();
+                    temp[(uint)entry.GetHashCode() % newCapacity] ??= new DoublyLinkedList<TValue>();
 
                     temp[(uint)entry.GetHashCode() % newCapacity].Append(entry);
 
@@ -83,7 +83,6 @@ public class HashSet<TValue> : IEnumerable
         entries = temp;
 
     }
-
 
     /// <summary>
     /// Obtains the hashcode of the specified value using .GetHashCode() and then returns the remainder of the hash code divided by the capacity of the internal data structure.
@@ -102,7 +101,7 @@ public class HashSet<TValue> : IEnumerable
     {
         try
         {
-            entries[Index(value)] ??= new SinglyLinkedList<TValue>();
+            entries[Index(value)] ??= new DoublyLinkedList<TValue>();
 
             if (Contains(value))
             {
@@ -130,6 +129,21 @@ public class HashSet<TValue> : IEnumerable
 
     }
 
+    public TValue? Retrieve(TValue value)
+    {
+        foreach (TValue entry in entries[Index(value)])
+            if (EqualityComparer<TValue>.Default.Equals(entry, value))
+                return entry;
+
+        return default;
+
+    }
+
+    public void Remove(TValue value)
+    {
+    
+    }
+
     /// <summary>
     /// Checks whether or not the provided value is contained within the set.
     /// </summary>
@@ -144,73 +158,59 @@ public class HashSet<TValue> : IEnumerable
         return false;
 
     }
-
-    public TValue? Retrieve(TValue value)
-    {
-        foreach (TValue entry in entries[Index(value)])
-            if (EqualityComparer<TValue>.Default.Equals(entry, value))
-                return entry;
-
-        return default;
-
-    }
-
-    public void Dump()
-    {
-        for (int i = 0; i < entries.Length; i++)
-            if (entries[i] is not null)
-                foreach (TValue entry in entries[i])
-                    Trace.WriteLine(entry);
-
-    }
-
-    IEnumerator IEnumerable.GetEnumerator() => (IEnumerator) GetEnumerator();
-
+    
     public IEnumerator GetEnumerator() => 
         new HashSetEnumerator(this);
+
+    IEnumerator IEnumerable.GetEnumerator() => 
+        (IEnumerator) GetEnumerator();
 
     #endregion
 
     #region Classes and Structs
     private class HashSetEnumerator : IEnumerator
     {
-        private int iterator;
+        #region Fields
+        private int index;
 
-        private Node<TValue>? node;
+        private Node<TValue>? iterator;
         private HashSet<TValue> set;
 
+        #endregion
+
+        #region Constructor
         public HashSetEnumerator(HashSet<TValue> hashSet)
         {
-            iterator = 0;
+            index = 0;
 
             set = hashSet;
 
         }
 
+        #endregion
+
+        #region Properties
         public object? Current { get; set; }
 
+        #endregion
+
+        #region Methods
         public bool MoveNext()
         {
-            while (set.entries[iterator] is null && iterator < set.entries.Length - 1)
-                iterator ++;
+            while (index < set.entries.Length && set.entries[index] is null)
+                index ++;
 
-            if (iterator >= set.entries.Length)
+            if (index >= set.entries.Length)
                 return false;
 
-            if (set.entries[iterator] is null)
-                return false;
+            iterator ??= set.entries[index].First ?? throw new NullReferenceException();
 
-            node ??= set.entries[iterator].First;
+            Current = iterator.Data;
 
-            Current = node.Data;
+            iterator = iterator.Next;
 
-            if (node?.Next is null)
-            {
-                iterator ++;
-
-                node = null;
-
-            }
+            if (iterator is null)
+                index ++;
 
             return true;
 
@@ -218,9 +218,12 @@ public class HashSet<TValue> : IEnumerable
 
         public void Reset()
         {
-            iterator = 0;
+            index = 0;
+            iterator = null;
 
         }
+
+        #endregion
 
     }
 

@@ -19,6 +19,8 @@ class Program
         HashTable<string, string> oxford = new();
         HashSet.HashSet<int> set = new();
 
+        logWriter.AutoFlush = true;
+
         stopwatch.Start();
         
         for (i = 0; i < 100000; i++)
@@ -61,8 +63,8 @@ class Program
         while (i < sampleValues.Length)
         {
             sampleValues[i] = sampleValues[sampleValues.Length - i]; /* The value of i will start at 74,999. This will start at 100,000 - i and tend 
-                                                                      *     toward 0 as i grows, copying the existing value at sampleValues[i] back
-                                                                      *     into the array a second time.*/
+                                                                      *     toward 0 as i grows, copying the existing value at 
+                                                                      *     sampleValues[100,000 -i] back into the array a second time.*/
 
             i++;
             
@@ -74,8 +76,6 @@ class Program
 
         foreach (int num in set)
             logWriter.WriteLine(num);
-
-       set.Dump();
 
     }
 
