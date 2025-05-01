@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 
 namespace LinkedList;
@@ -81,6 +83,46 @@ public class DoublyLinkedList<T> : IEnumerable
 
         if (node.Prev is not null)
             node.Prev.Next = node.Next;
+
+    }
+
+    public void Remove(T value)
+    {
+        EqualityComparer<T> comparer = EqualityComparer<T>.Default;
+        
+        if (head is null)
+            return;
+
+        if (comparer.Equals(value, head.Data))
+        {
+            RemoveFirst();
+
+            return;
+            
+        }
+
+        Node<T>? iterator = head;
+
+        while (!EqualityComparer<T>.Default.Equals(value, iterator.Data) && iterator.Next is not null)
+            iterator = iterator.Next;
+        
+        Remove(iterator);
+
+    }
+
+    public void RemoveFirst()
+    {
+        if (head is null)
+            return;
+
+        if (head.Next is not null)
+        {
+            head = head.Next;
+
+            return;
+        }
+
+        head = null;
 
     }
 

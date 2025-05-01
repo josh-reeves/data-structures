@@ -119,6 +119,8 @@ public class HashSet<TValue> : IEnumerable
 
             if (loadFactor > 0.75)
                 Rehash(Convert.ToUInt32(entries.Length * 2));
+
+
                  
         }
         catch (Exception ex)
@@ -141,6 +143,7 @@ public class HashSet<TValue> : IEnumerable
 
     public void Remove(TValue value)
     {
+        entries[Index(value)].Remove(value);
     
     }
 
@@ -158,7 +161,7 @@ public class HashSet<TValue> : IEnumerable
         return false;
 
     }
-    
+
     public IEnumerator GetEnumerator() => 
         new HashSetEnumerator(this);
 

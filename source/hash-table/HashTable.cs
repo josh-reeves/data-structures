@@ -8,14 +8,14 @@ public class HashTable<TKey, TValue> where TKey : notnull
     #region Fields
     private double loadFactor;
 
-    private SinglyLinkedList<Entry>[] entries;
+    private DoublyLinkedList<Entry>[] entries;
     
     #endregion
 
     #region Constructor(s)
     public HashTable(uint initialCapacity = 2)
     {
-        entries = new SinglyLinkedList<Entry>[initialCapacity];
+        entries = new DoublyLinkedList<Entry>[initialCapacity];
 
     }
 
@@ -35,7 +35,7 @@ public class HashTable<TKey, TValue> where TKey : notnull
 
             if (entries is null)
             {
-                entries = new SinglyLinkedList<Entry>[value];
+                entries = new DoublyLinkedList<Entry>[value];
 
                 return;
 
@@ -64,14 +64,14 @@ public class HashTable<TKey, TValue> where TKey : notnull
     /// </param>
     private void Rehash(uint newCapacity)
     {
-        SinglyLinkedList<Entry>[] temp = new SinglyLinkedList<Entry>[newCapacity];
+        DoublyLinkedList<Entry>[] temp = new DoublyLinkedList<Entry>[newCapacity];
 
         for (int i = 0; i < entries.Length; i++)
         {
             if (entries[i] is not null)
                 foreach (Entry entry in entries[i])
                 {
-                    temp[(uint)entry.Key.GetHashCode() % newCapacity] ??= new SinglyLinkedList<Entry>();
+                    temp[(uint)entry.Key.GetHashCode() % newCapacity] ??= new DoublyLinkedList<Entry>();
 
                     temp[(uint)entry.Key.GetHashCode() % newCapacity].Append(entry);
 
@@ -102,7 +102,7 @@ public class HashTable<TKey, TValue> where TKey : notnull
     {
         try
         {
-            entries[Index(key)] ??= new SinglyLinkedList<Entry>();
+            entries[Index(key)] ??= new DoublyLinkedList<Entry>();
 
             if (Contains(key))
             {

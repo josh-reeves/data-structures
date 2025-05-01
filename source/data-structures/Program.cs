@@ -75,7 +75,12 @@ class Program
             set.Add(sampleValues[i]);
 
         foreach (int num in set)
-            logWriter.WriteLine(num);
+            logWriter.WriteLine(num); // Tracks all values in set to confirm that none are missing.
+
+        // Tests for hash set removal and re-addition:
+        set.Remove(5);
+
+        set.Add(5); // If this isn't a duplicate, and the debug line for duplicates was output earlier, the remove method worked.
 
     }
 
