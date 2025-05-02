@@ -1,13 +1,11 @@
 ﻿using System.Collections;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 
 namespace LinkedList;
 
 public class DoublyLinkedList<T> : IEnumerable
 {
     #region Fields
+    private EqualityComparer<T> comparer = EqualityComparer<T>.Default;
     private Node<T>? head;
     private Node<T>? tail;
 
@@ -87,9 +85,7 @@ public class DoublyLinkedList<T> : IEnumerable
     }
 
     public void Remove(T value)
-    {
-        EqualityComparer<T> comparer = EqualityComparer<T>.Default;
-        
+    {        
         if (head is null)
             return;
 
@@ -103,10 +99,25 @@ public class DoublyLinkedList<T> : IEnumerable
 
         Node<T>? iterator = head;
 
-        while (!EqualityComparer<T>.Default.Equals(value, iterator.Data) && iterator.Next is not null)
+        while (!comparer.Equals(value, iterator.Data) && iterator.Next is not null)
             iterator = iterator.Next;
         
         Remove(iterator);
+
+    }
+
+    public void Replace(T oldValue, T newValue)
+    {
+        if (head is null) // Return if the list hasn't been initialized.
+            return;
+
+        Node<T>? iterator = head; // Create iterator and set it to head.
+
+        while (iterator is not null && !comparer.Equals(oldValue, iterator.Data)) // Walk list until iterator is null or we find the specified value.
+            iterator = iterator.Next;
+
+        if (iterator is not null) // If iterator isn't null, we can assume the value was in the list and replace it.
+            iterator.Data = newValue; 
 
     }
 
@@ -123,6 +134,22 @@ public class DoublyLinkedList<T> : IEnumerable
         }
 
         head = null;
+
+    }
+
+    public void RemoveLast()
+    {
+        if (head is null || tail is null)
+            return;
+
+        if (tail.Prev is not null)
+        {
+            tail = tail.Prev;
+
+            return;
+        }
+
+        tail = null;
 
     }
 

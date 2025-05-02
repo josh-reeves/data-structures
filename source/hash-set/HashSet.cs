@@ -137,7 +137,7 @@ public class HashSet<TValue> : IEnumerable
             if (EqualityComparer<TValue>.Default.Equals(entry, value))
                 return entry;
 
-        return default;
+        throw new KeyNotFoundException();
 
     }
 

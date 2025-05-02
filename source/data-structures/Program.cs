@@ -9,7 +9,8 @@ class Program
     {    
         const double sampleUniqueness = 0.75;
 
-        int i;
+        int i,
+            testValue = 5;
 
         int[] sampleValues = new int[100000];
 
@@ -35,7 +36,7 @@ class Program
         stopwatch.Reset();
         
         stopwatch.Start();
-        Trace.WriteLine(oxford["99999"]); 
+        Trace.WriteLine(oxford[Convert.ToString(testValue)]); 
         stopwatch.Stop();
         Trace.WriteLine("Oxford retrieval completed in " + stopwatch.ElapsedTicks + " ticks."); // ~11K ticks.
 
@@ -53,18 +54,24 @@ class Program
         stopwatch.Reset();
 
         stopwatch.Start();
-        Trace.WriteLine(dotnet["99999"]);
+        Trace.WriteLine(dotnet[Convert.ToString(testValue)]);
         stopwatch.Stop();
         Trace.WriteLine("Dotnet retrieval completed in " + stopwatch.ElapsedTicks + " ticks."); // ~8K ticks.
 
-        for (i = 0; i <= Math.Round(sampleValues.Length * sampleUniqueness) - 1; i++)
+        oxford.Add("5", "1000");
+        oxford.OverWrite = true;
+        oxford.Add("5", "3000");
+        
+        Trace.WriteLine(oxford.GetValue("5"));
+
+        for (i = 0; i <= sampleValues.Length * sampleUniqueness - 1; i++)
             sampleValues[i] = i;
 
         while (i < sampleValues.Length)
         {
             sampleValues[i] = sampleValues[sampleValues.Length - i]; /* The value of i will start at 74,999. This will start at 100,000 - i and tend 
                                                                       *     toward 0 as i grows, copying the existing value at 
-                                                                      *     sampleValues[100,000 -i] back into the array a second time.*/
+                                                                      *     sampleValues[100,000 - i] back into the array a second time.*/
 
             i++;
             
@@ -78,9 +85,22 @@ class Program
             logWriter.WriteLine(num); // Tracks all values in set to confirm that none are missing.
 
         // Tests for hash set removal and re-addition:
-        set.Remove(5);
+        set.Remove(testValue);
 
-        set.Add(5); // If this isn't a duplicate, and the debug line for duplicates was output earlier, the remove method worked.
+        try
+        {
+            Trace.WriteLine(set.Retrieve(testValue));
+
+        }
+        catch
+        {
+            Trace.WriteLine("The specified value was successfully removed and cannot be retrieved.");
+
+        }
+
+        set.Add(testValue);
+
+        Trace.WriteLine(set.Retrieve(testValue));
 
     }
 

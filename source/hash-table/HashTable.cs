@@ -13,15 +13,19 @@ public class HashTable<TKey, TValue> where TKey : notnull
     #endregion
 
     #region Constructor(s)
-    public HashTable(uint initialCapacity = 2)
+    public HashTable(uint initialCapacity = 2, bool overWrite = false)
     {
         entries = new DoublyLinkedList<Entry>[initialCapacity];
+
+        OverWrite = overWrite;
 
     }
 
     #endregion
 
     #region Properites
+    public bool OverWrite { get; set; }
+
     public int Count { get; private set; }
 
     public uint Capacity
@@ -104,19 +108,19 @@ public class HashTable<TKey, TValue> where TKey : notnull
         {
             entries[Index(key)] ??= new DoublyLinkedList<Entry>();
 
-            if (Contains(key))
+            if (!Contains(key))
             {
-                Trace.WriteLine("Insertion skipped due to duplicate key");
+                entries[Index(key)].Append(new Entry(key, value));
 
-                return;
+                Count ++;
+
+                loadFactor = Count / entries.Length; 
 
             }
-
-            entries[Index(key)].Append(new Entry(key, value));
-
-            Count ++;
-
-            loadFactor = Count / entries.Length; 
+            else if (OverWrite)
+                Replace(key, value);
+            else
+                Trace.WriteLine("Insertion skipped due to duplicate key");
 
             if (loadFactor > 0.75)
                 Rehash(Convert.ToUInt32(entries.Length * 2));
@@ -128,6 +132,24 @@ public class HashTable<TKey, TValue> where TKey : notnull
 
         }
 
+    }
+
+    public void Remove(TKey key)
+    {
+        foreach (Entry entry in entries[Index(key)])
+            if (EqualityComparer<TKey>.Default.Equals(entry.Key, key))
+                entries[Index(key)].Remove(entry);
+        
+        throw new KeyNotFoundException();
+        
+    }
+
+    public void Replace(TKey key, TValue newValue)
+    {
+        foreach (Entry entry in entries[Index(key)])
+            if (EqualityComparer<TKey>.Default.Equals(entry.Key, key))
+                entries[Index(key)].Replace(entry, new Entry(){Key = key, Value = newValue});
+        
     }
 
     public bool Contains(TKey key)
