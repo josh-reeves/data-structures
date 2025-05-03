@@ -2,17 +2,21 @@
 
 namespace LinkedList;
 
-public class DoublyLinkedList<T> : IEnumerable
+public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
 {
     #region Fields
-    private EqualityComparer<T> comparer = EqualityComparer<T>.Default;
+    private EqualityComparer<T> comparer;
     private Node<T>? head;
     private Node<T>? tail;
 
     #endregion
 
     #region Constructor(s)
-    public DoublyLinkedList() {}
+    public DoublyLinkedList()
+    {
+        comparer = EqualityComparer<T>.Default;
+
+    }
 
     #endregion
 
@@ -76,6 +80,14 @@ public class DoublyLinkedList<T> : IEnumerable
 
     public void Remove(Node<T> node)
     {
+        if (node == head)
+        {
+            RemoveFirst();
+
+            return;
+            
+        }
+
         if (node.Next is not null)
             node.Next.Prev = node.Prev;
 
@@ -89,20 +101,13 @@ public class DoublyLinkedList<T> : IEnumerable
         if (head is null)
             return;
 
-        if (comparer.Equals(value, head.Data))
-        {
-            RemoveFirst();
-
-            return;
-            
-        }
-
         Node<T>? iterator = head;
 
-        while (!comparer.Equals(value, iterator.Data) && iterator.Next is not null)
+        while (iterator is not null && !comparer.Equals(value, iterator.Data))
             iterator = iterator.Next;
         
-        Remove(iterator);
+        if (iterator is not null)
+            Remove(iterator);
 
     }
 

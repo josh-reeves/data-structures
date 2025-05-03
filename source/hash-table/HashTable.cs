@@ -6,6 +6,8 @@ namespace HashTable;
 public class HashTable<TKey, TValue> where TKey : notnull
 {
     #region Fields
+    private const string duplicateMsg = "Insertion skipped due to duplicate key.";
+
     private double loadFactor;
 
     private DoublyLinkedList<Entry>[] entries;
@@ -120,7 +122,7 @@ public class HashTable<TKey, TValue> where TKey : notnull
             else if (OverWrite)
                 Replace(key, value);
             else
-                Trace.WriteLine("Insertion skipped due to duplicate key");
+                Trace.WriteLine(duplicateMsg);
 
             if (loadFactor > 0.75)
                 Rehash(Convert.ToUInt32(entries.Length * 2));
@@ -138,7 +140,12 @@ public class HashTable<TKey, TValue> where TKey : notnull
     {
         foreach (Entry entry in entries[Index(key)])
             if (EqualityComparer<TKey>.Default.Equals(entry.Key, key))
+            {
                 entries[Index(key)].Remove(entry);
+
+                Count--;
+
+            }
         
         throw new KeyNotFoundException();
         

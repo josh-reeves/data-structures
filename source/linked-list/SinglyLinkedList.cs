@@ -1,10 +1,12 @@
 ﻿using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 
 namespace LinkedList;
 
-public class SinglyLinkedList<T> : IEnumerable
+public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
 {
     #region Fields
+    private EqualityComparer<T> comparer = EqualityComparer<T>.Default;
     private Node<T>? head;
     private Node<T>? tail;
 
@@ -59,6 +61,106 @@ public class SinglyLinkedList<T> : IEnumerable
 
         tail.Next = new Node<T>(data);
     
+    }
+
+    public void Remove(Node<T> node)
+    {
+        if (head is null) // Return if the list hasn't been initialized.
+            return;
+
+        Node<T>? iterator = head,
+                 previous = iterator;
+
+        while (iterator is not null && node != iterator) // Walk list until iterator is null or we find the specified node.
+        {
+            previous = iterator;
+            iterator = iterator.Next;
+
+        }
+
+        if (iterator is null)
+            return;
+
+        previous.Next = iterator.Next;
+        
+        if (iterator == tail)
+            tail = previous;
+        
+
+    }
+
+    public void Remove(T value)
+    {
+        if (head is null) // Return if the list hasn't been initialized.
+            return;
+
+        Node<T>? iterator = head,
+                 previous = iterator;
+
+        while (iterator is not null && !comparer.Equals(value, iterator.Data)) // Walk list until iterator is null or we find the specified value.
+        {
+            previous = iterator;
+            iterator = iterator.Next;
+
+        }
+
+        if (iterator is null)
+            return;
+
+        previous.Next = iterator.Next;
+        
+        if (iterator == tail)
+            tail = previous;
+
+    }
+
+    public void Replace(T oldValue, T newValue)
+    {
+        if (head is null) // Return if the list hasn't been initialized.
+            return;
+
+        Node<T>? iterator = head; // Create iterator and set it to head.
+
+        while (iterator is not null && !comparer.Equals(oldValue, iterator.Data)) // Walk list until iterator is null or we find the specified value.
+            iterator = iterator.Next;
+
+        if (iterator is not null) // If iterator isn't null, we can assume the value was in the list and replace it.
+            iterator.Data = newValue; 
+
+    }
+
+    public void RemoveFirst()
+    {
+        if (head is null)
+            return;
+
+        if (head.Next is not null)
+        {
+            head = head.Next;
+
+            return;
+        }
+
+        head = null;
+
+    }
+
+    public void RemoveLast()
+    {
+        if (head is null) // Return if the list hasn't been initialized.
+            return;
+
+        Node<T>? iterator = head; // Create iterator and set it to head.
+
+        while (iterator is not null && iterator.Next != tail) // Walk list until the next node is the tail or we reach the end.
+            iterator = iterator.Next;
+
+        /* Might be interesting to create a private "MaintainList" method that tracks repairs the list if either the head or tail isn't found, but
+         *  that hasn't happened yet and shouldn't happen if the other code is structured well. It's also well beyond the scope of this project.
+         *  Interesting idea for the future, though.*/
+
+        tail = iterator;
+
     }
 
     IEnumerator IEnumerable.GetEnumerator() => (IEnumerator) GetEnumerator();
