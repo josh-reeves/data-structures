@@ -27,7 +27,7 @@ public class HashTable<TKey, TValue> where TKey : notnull
 
     #region Properites
     public bool OverWrite { get; set; }
-
+   
     public int Count { get; private set; }
 
     public uint Capacity
