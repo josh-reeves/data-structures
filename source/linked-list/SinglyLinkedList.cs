@@ -6,20 +6,24 @@ namespace LinkedList;
 public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
 {
     #region Fields
-    private EqualityComparer<T> comparer = EqualityComparer<T>.Default;
-    private Node<T>? head;
-    private Node<T>? tail;
+    private EqualityComparer<T> comparer;
+    private INode<T>? head;
+    private INode<T>? tail;
 
     #endregion
 
     #region Constructor(s)
-    public SinglyLinkedList() {}
+    public SinglyLinkedList()
+    {
+        comparer = EqualityComparer<T>.Default;
+
+    }
 
     #endregion
 
     #region Properties
-    public Node<T>? First { get => head; }
-    public Node<T>? Last { get => tail; }
+    public INode<T>? First { get => head; }
+    public INode<T>? Last { get => tail; }
 
     #endregion
 
@@ -34,7 +38,7 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
 
         }
 
-        Node<T> temp = head;
+        INode<T> temp = head;
 
         head = new Node<T>(data) 
         {
@@ -63,12 +67,12 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
     
     }
 
-    public void Remove(Node<T> node)
+    public void Remove(INode<T> node)
     {
         if (head is null) // Return if the list hasn't been initialized.
             return;
 
-        Node<T>? iterator = head,
+        INode<T>? iterator = head,
                  previous = iterator;
 
         while (iterator is not null && node != iterator) // Walk list until iterator is null or we find the specified node.
@@ -86,7 +90,6 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
         if (iterator == tail)
             tail = previous;
         
-
     }
 
     public void Remove(T value)
@@ -94,8 +97,8 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
         if (head is null) // Return if the list hasn't been initialized.
             return;
 
-        Node<T>? iterator = head,
-                 previous = iterator;
+        INode<T>? iterator = head,
+                  previous = iterator;
 
         while (iterator is not null && !comparer.Equals(value, iterator.Data)) // Walk list until iterator is null or we find the specified value.
         {
@@ -119,13 +122,35 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
         if (head is null) // Return if the list hasn't been initialized.
             return;
 
-        Node<T>? iterator = head; // Create iterator and set it to head.
+        INode<T>? iterator = head; // Create iterator and set it to head.
 
         while (iterator is not null && !comparer.Equals(oldValue, iterator.Data)) // Walk list until iterator is null or we find the specified value.
             iterator = iterator.Next;
 
         if (iterator is not null) // If iterator isn't null, we can assume the value was in the list and replace it.
             iterator.Data = newValue; 
+
+    }
+
+    public void Replace(INode<T> oldNode, INode<T> newNode)
+    {
+        if (head is null) // Return if the list hasn't been initialized.
+            return;
+
+        if (newNode.Next is null)
+            newNode.Next = oldNode.Next;
+
+        INode<T>? iterator = head,
+                  previous = iterator; // Create iterator and set it to head.
+
+        while (iterator.Next is not null && iterator != oldNode)
+        {
+            previous = iterator;
+            iterator = iterator.Next;
+
+        }
+
+        previous.Next = newNode;
 
     }
 
@@ -150,14 +175,10 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
         if (head is null) // Return if the list hasn't been initialized.
             return;
 
-        Node<T>? iterator = head; // Create iterator and set it to head.
+        INode<T>? iterator = head; // Create iterator and set it to head.
 
-        while (iterator is not null && iterator.Next != tail) // Walk list until the next node is the tail or we reach the end.
+        while (iterator.Next is not null && iterator.Next != tail) // Walk list until the next node is the tail or we reach the end.
             iterator = iterator.Next;
-
-        /* Might be interesting to create a private "MaintainList" method that tracks repairs the list if either the head or tail isn't found, but
-         *  that hasn't happened yet and shouldn't happen if the other code is structured well. It's also well beyond the scope of this project.
-         *  Interesting idea for the future, though.*/
 
         tail = iterator;
 
@@ -175,7 +196,7 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
     {
         #region Fields
         private readonly SinglyLinkedList<T> list;
-        private Node<T>? iterator;
+        private INode<T>? iterator;
 
         #endregion
 

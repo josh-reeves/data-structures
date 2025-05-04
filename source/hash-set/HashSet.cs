@@ -178,7 +178,7 @@ public class HashSet<TValue> : IEnumerable
         #region Fields
         private int index;
 
-        private Node<TValue>? iterator;
+        private INode<TValue>? iterator;
         private HashSet<TValue> set;
 
         #endregion

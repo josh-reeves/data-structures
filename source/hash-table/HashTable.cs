@@ -136,6 +136,11 @@ public class HashTable<TKey, TValue> where TKey : notnull
 
     }
 
+    /// <summary>
+    /// Removes the key value pair associated with the specified key from the data structure.
+    /// </summary>
+    /// <param name="key">The key to remove from the data structure.</param>
+    /// <exception cref="KeyNotFoundException">Thrown if the specified key is not found.</exception>
     public void Remove(TKey key)
     {
         foreach (Entry entry in entries[Index(key)])
@@ -151,6 +156,7 @@ public class HashTable<TKey, TValue> where TKey : notnull
         
     }
 
+    //
     public void Replace(TKey key, TValue newValue)
     {
         foreach (Entry entry in entries[Index(key)])

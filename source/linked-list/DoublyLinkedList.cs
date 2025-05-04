@@ -6,8 +6,8 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
 {
     #region Fields
     private EqualityComparer<T> comparer;
-    private Node<T>? head;
-    private Node<T>? tail;
+    private INode<T>? head;
+    private INode<T>? tail;
 
     #endregion
 
@@ -21,8 +21,8 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
     #endregion
 
     #region Properties
-    public Node<T>? First { get => head; }
-    public Node<T>? Last { get => tail; }
+    public INode<T>? First { get => head; }
+    public INode<T>? Last { get => tail; }
 
     #endregion
 
@@ -37,7 +37,7 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
 
         }
 
-        Node<T> temp = head;
+        INode<T> temp = head;
 
         head = new Node<T>(data) 
         {
@@ -64,7 +64,7 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
         while (tail.Next != null)
             tail = tail.Next;
 
-        Node<T> temp = tail;
+        INode<T> temp = tail;
 
         tail.Next = new Node<T>(data)
         {
@@ -78,7 +78,7 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
     
     }
 
-    public void Remove(Node<T> node)
+    public void Remove(INode<T> node)
     {
         if (node == head)
         {
@@ -86,6 +86,14 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
 
             return;
             
+        }
+
+        if (node == tail)
+        {
+            RemoveLast();
+
+            return;
+
         }
 
         if (node.Next is not null)
@@ -101,7 +109,7 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
         if (head is null)
             return;
 
-        Node<T>? iterator = head;
+        INode<T>? iterator = head;
 
         while (iterator is not null && !comparer.Equals(value, iterator.Data))
             iterator = iterator.Next;
@@ -116,13 +124,31 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
         if (head is null) // Return if the list hasn't been initialized.
             return;
 
-        Node<T>? iterator = head; // Create iterator and set it to head.
+        INode<T>? iterator = head; // Create iterator and set it to head.
 
         while (iterator is not null && !comparer.Equals(oldValue, iterator.Data)) // Walk list until iterator is null or we find the specified value.
             iterator = iterator.Next;
 
         if (iterator is not null) // If iterator isn't null, we can assume the value was in the list and replace it.
             iterator.Data = newValue; 
+
+    }
+
+    public void Replace (INode<T> oldNode, INode<T> newNode)
+    {
+        // Uncommenting null assignment operator will allow the Next and Previous values from newNode to be used, but could result in loops.
+        newNode.Prev /*??*/= oldNode.Prev; 
+        newNode.Next /*??*/= oldNode.Next;
+
+        if (newNode.Prev is not null)
+            newNode.Prev.Next = newNode;
+        else
+            head = newNode;
+        
+        if (newNode.Next is not null)
+            newNode.Next.Prev = newNode;
+        else
+            tail = newNode;
 
     }
 
@@ -134,7 +160,7 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
         if (head.Next is not null)
         {
             head = head.Next;
-
+ 
             return;
         }
 
@@ -170,7 +196,7 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
     {
         #region Fields
         private readonly DoublyLinkedList<T> list;
-        private Node<T>? iterator;
+        private INode<T>? iterator;
 
         #endregion
 
