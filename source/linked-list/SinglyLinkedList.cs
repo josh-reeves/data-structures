@@ -46,6 +46,8 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
             
         };
 
+        tail ??= head;
+
     }
 
     public void Append(T data)

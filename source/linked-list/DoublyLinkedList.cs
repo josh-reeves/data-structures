@@ -47,6 +47,8 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
 
         temp.Prev = head;
 
+        tail ??= head;
+
     }
 
     public void Append(T data)

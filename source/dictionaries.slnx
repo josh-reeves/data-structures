@@ -3,4 +3,6 @@
   <Project Path="hash-set/HashSet.csproj" />
   <Project Path="linked-list/LinkedList.csproj" />
   <Project Path="hash-table/HashTable.csproj" />
+  <Project Path="queue/Queue.csproj" />
+  <Project Path="stack/Stack.csproj" />
 </Solution>
