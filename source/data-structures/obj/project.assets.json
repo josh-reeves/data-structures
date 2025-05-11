@@ -37,6 +37,32 @@
         "runtime": {
           "bin/placeholder/LinkedList.dll": {}
         }
+      },
+      "Queue/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LinkedList": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Queue.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Queue.dll": {}
+        }
+      },
+      "Stack/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "LinkedList": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Stack.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Stack.dll": {}
+        }
       }
     }
   },
@@ -55,12 +81,24 @@
       "type": "project",
       "path": "../linked-list/LinkedList.csproj",
       "msbuildProject": "../linked-list/LinkedList.csproj"
+    },
+    "Queue/1.0.0": {
+      "type": "project",
+      "path": "../queue/Queue.csproj",
+      "msbuildProject": "../queue/Queue.csproj"
+    },
+    "Stack/1.0.0": {
+      "type": "project",
+      "path": "../stack/Stack.csproj",
+      "msbuildProject": "../stack/Stack.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
       "HashSet >= 1.0.0",
-      "HashTable >= 1.0.0"
+      "HashTable >= 1.0.0",
+      "Queue >= 1.0.0",
+      "Stack >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -93,6 +131,12 @@
             },
             "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\hash-table\\HashTable.csproj": {
               "projectPath": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\hash-table\\HashTable.csproj"
+            },
+            "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\queue\\Queue.csproj": {
+              "projectPath": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\queue\\Queue.csproj"
+            },
+            "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\stack\\Stack.csproj": {
+              "projectPath": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\stack\\Stack.csproj"
             }
           }
         }

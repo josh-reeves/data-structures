@@ -1,0 +1,16 @@
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\bin\Debug\net9.0\Stack.deps.json
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\bin\Debug\net9.0\Stack.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\bin\Debug\net9.0\Stack.pdb
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\bin\Debug\net9.0\LinkedList.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\bin\Debug\net9.0\LinkedList.pdb
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\obj\Debug\net9.0\Stack.csproj.AssemblyReference.cache
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\obj\Debug\net9.0\Stack.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\obj\Debug\net9.0\Stack.AssemblyInfoInputs.cache
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\obj\Debug\net9.0\Stack.AssemblyInfo.cs
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\obj\Debug\net9.0\Stack.csproj.CoreCompileInputs.cache
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\obj\Debug\net9.0\Stack.sourcelink.json
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\obj\Debug\net9.0\Stack.csproj.Up2Date
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\obj\Debug\net9.0\Stack.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\obj\Debug\net9.0\refint\Stack.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\obj\Debug\net9.0\Stack.pdb
+C:\Users\JoshReeves\Documents\repos\data-structures\source\stack\obj\Debug\net9.0\ref\Stack.dll

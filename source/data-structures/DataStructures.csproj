@@ -10,6 +10,8 @@
   <ItemGroup>
     <ProjectReference Include="..\hash-set\HashSet.csproj" />
     <ProjectReference Include="..\hash-table\HashTable.csproj" />
+    <ProjectReference Include="..\queue\Queue.csproj" />
+    <ProjectReference Include="..\stack\Stack.csproj" />
   </ItemGroup>
 
 </Project>

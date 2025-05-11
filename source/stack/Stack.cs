@@ -2,7 +2,7 @@
 
 namespace Stack;
 
-public class Stack<T>
+public class Stack<T> : IStack<T>
 {
     #region Fields
     private readonly DoublyLinkedList<T> linkedList;
@@ -10,7 +10,7 @@ public class Stack<T>
     #endregion
 
     #region Constructors
-    Stack()
+    public Stack()
     {
         linkedList = new DoublyLinkedList<T>();
 
@@ -19,24 +19,42 @@ public class Stack<T>
     #endregion
 
     #region Methods
+    /// <summary>
+    /// Adds a new value to the top of the stack.
+    /// </summary>
+    /// <param name="value">The value to add to the stack.</param>
     public void Push(T value)
     {
         linkedList.Append(value);
 
     }
 
-    public void Pop()
+    /// <summary>
+    /// Removes the top value from the stack.
+    /// </summary>
+    public T? Pop()
     {
+        if (linkedList.Last is null)
+            return default;
+
+        T? value = linkedList.Last.Data;
+
         linkedList.RemoveLast();
+
+        return value;
 
     }
 
-    public T? Read()
+    /// <summary>
+    /// Reads the top value from the stack.
+    /// </summary>
+    /// <returns>The top value from the stack.</returns>
+    public T? Peek()
     {
-        if (linkedList.Last is not null)
-            return linkedList.Last.Data;
+        if (linkedList.Last is null)
+            return default;
 
-        return default;
+        return linkedList.Last.Data;
 
     }
 

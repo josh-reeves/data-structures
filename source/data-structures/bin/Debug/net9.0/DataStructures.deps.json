@@ -9,7 +9,9 @@
       "DataStructures/1.0.0": {
         "dependencies": {
           "HashSet": "1.0.0",
-          "HashTable": "1.0.0"
+          "HashTable": "1.0.0",
+          "Queue": "1.0.0",
+          "Stack": "1.0.0"
         },
         "runtime": {
           "DataStructures.dll": {}
@@ -44,6 +46,28 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "Queue/1.0.0": {
+        "dependencies": {
+          "LinkedList": "1.0.0"
+        },
+        "runtime": {
+          "Queue.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Stack/1.0.0": {
+        "dependencies": {
+          "LinkedList": "1.0.0"
+        },
+        "runtime": {
+          "Stack.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -64,6 +88,16 @@
       "sha512": ""
     },
     "LinkedList/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Queue/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Stack/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

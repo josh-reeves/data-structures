@@ -21,3 +21,7 @@ C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\D
 C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\obj\Debug\net9.0\DataStructures.sourcelink.json
 C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\HashSet.dll
 C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\HashSet.pdb
+C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\Queue.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\Stack.dll
+C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\Queue.pdb
+C:\Users\JoshReeves\Documents\repos\data-structures\source\data-structures\bin\Debug\net9.0\Stack.pdb

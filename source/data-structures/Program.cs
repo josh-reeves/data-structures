@@ -12,12 +12,12 @@ class Program
         int i,
             testValue = 5;
 
-        int[] sampleValues = new int[100000];
-
         StreamWriter logWriter;
         
         HashTableTests();
         HashSetTests();
+        StackTests();
+        QueueTests();
 
         void HashTableTests()
         {
@@ -72,6 +72,8 @@ class Program
 
         void HashSetTests()
         {
+            int[] sampleValues = new int[100000];
+
             HashSet.HashSet<int> set = new();
             logWriter = new(Path.Combine(Directory.GetCurrentDirectory(), "set.csv"))
             {
@@ -119,6 +121,64 @@ class Program
 
         }
 
+        void StackTests()
+        {
+            bool isPalindrome;
+            string[] words = ["civic", "radar", "kayak", "rotor", "madam", "tattarrattat", "palindrome", "water", "mug", "fish", "monitor"];
+
+            Stack.Stack<char> chars = new Stack.Stack<char>();
+
+            foreach (string word in words)
+            {
+                isPalindrome = true;
+
+                for (i = 0; i < word.Length / 2; i++)
+                    chars.Push(word[i]);
+
+                if (word.Length % 2 != 0)
+                    i++;
+
+                while (i < word.Length)
+                {
+                    if (chars.Pop() != word[i])
+                    {
+                        isPalindrome = false;
+
+                        break;
+
+                    }
+
+                    i++;
+
+                }
+
+                Trace.WriteLine(word + " is" + (isPalindrome ? " ": " not ") + "a palindrome");
+                
+            }
+
+        }
+
+        void QueueTests()
+        {
+            Queue.Queue<char> queue = new Queue.Queue<char>();
+
+            char[] text = "If I'm not back in five minutes, just wait longer.".ToArray();
+
+            for (i = 0; i < text.Length; i++)
+                queue.Enqueue(text[i]);
+
+            while (queue.Peek() != 0)
+            {
+                Thread.Sleep(10);
+
+                Trace.Write(queue.Dequeue());
+
+            }
+
+        }
+        
     }
+
+
 
 }
