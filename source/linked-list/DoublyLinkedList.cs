@@ -2,12 +2,10 @@
 
 namespace LinkedList;
 
-public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
+public class DoublyLinkedList<T> : LinkedList<T>, ILinkedList<T>, IEnumerable
 {
     #region Fields
     private EqualityComparer<T> comparer;
-    private INode<T>? head;
-    private INode<T>? tail;
 
     #endregion
 
@@ -20,11 +18,6 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
 
     #endregion
 
-    #region Properties
-    public INode<T>? First { get => head; }
-    public INode<T>? Last { get => tail; }
-
-    #endregion
 
     #region Methods
     public void Prepend(T data)
@@ -80,7 +73,7 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
     
     }
 
-    public void Remove(INode<T> node)
+    public override void Remove(INode<T> node)
     {
         if (node == head)
         {
@@ -106,7 +99,7 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
 
     }
 
-    public void Remove(T value)
+    public override void Remove(T value)
     {        
         if (head is null)
             return;
@@ -121,7 +114,7 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
 
     }
 
-    public void Replace(T oldValue, T newValue)
+    public override void Replace(T oldValue, T newValue)
     {
         if (head is null) // Return if the list hasn't been initialized.
             return;
@@ -136,7 +129,7 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
 
     }
 
-    public void Replace (INode<T> oldNode, INode<T> newNode)
+    public override void Replace (INode<T> oldNode, INode<T> newNode)
     {
         // Uncommenting null assignment operator will allow the Next and Previous values from newNode to be used, but could result in loops.
         newNode.Prev /*??*/= oldNode.Prev; 
@@ -154,7 +147,7 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
 
     }
 
-    public void RemoveFirst()
+    public override void RemoveFirst()
     {
         if (head is null)
             return;
@@ -170,7 +163,7 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
 
     }
 
-    public void RemoveLast()
+    public override void RemoveLast()
     {
         if (head is null || tail is null)
             return;
@@ -185,63 +178,6 @@ public class DoublyLinkedList<T> : ILinkedList<T>, IEnumerable
         tail = null;
 
     }
-
-    IEnumerator IEnumerable.GetEnumerator() => (IEnumerator) GetEnumerator();
-
-    public IEnumerator GetEnumerator() => 
-        new DoublyLinkedListEnum(this);
-
-    #endregion
-
-    #region Classes and Structs
-    private class DoublyLinkedListEnum : IEnumerator
-    {
-        #region Fields
-        private readonly DoublyLinkedList<T> list;
-        private INode<T>? iterator;
-
-        #endregion
-
-        #region  Constructor(s)
-        public DoublyLinkedListEnum(DoublyLinkedList<T> linkedList)
-        {
-            list = linkedList;
-            iterator = list.head;
-
-        }
-
-        #endregion
-
-        #region Properties
-        public object? Current { get; private set; }
-
-        #endregion
-
-        #region Methods
-        public bool MoveNext()
-        {
-            if (iterator is null)
-                return false;
-
-            Current = iterator.Data;
-
-            iterator = iterator.Next;
-
-            return true;
-        
-        }
-
-        public void Reset()
-        {
-            iterator = list.head;
-
-        }
-
-        #endregion
-
-    }
-
-    #endregion
 
 }
 

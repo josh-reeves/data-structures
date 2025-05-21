@@ -3,12 +3,10 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace LinkedList;
 
-public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
+public class SinglyLinkedList<T> : LinkedList<T>, ILinkedList<T>, IEnumerable
 {
     #region Fields
     private EqualityComparer<T> comparer;
-    private INode<T>? head;
-    private INode<T>? tail;
 
     #endregion
 
@@ -18,12 +16,6 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
         comparer = EqualityComparer<T>.Default;
 
     }
-
-    #endregion
-
-    #region Properties
-    public INode<T>? First { get => head; }
-    public INode<T>? Last { get => tail; }
 
     #endregion
 
@@ -69,7 +61,7 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
     
     }
 
-    public void Remove(INode<T> node)
+    public override void Remove(INode<T> node)
     {
         if (head is null) // Return if the list hasn't been initialized.
             return;
@@ -94,7 +86,7 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
         
     }
 
-    public void Remove(T value)
+    public override void Remove(T value)
     {
         if (head is null) // Return if the list hasn't been initialized.
             return;
@@ -119,7 +111,7 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
 
     }
 
-    public void Replace(T oldValue, T newValue)
+    public override void Replace(T oldValue, T newValue)
     {
         if (head is null) // Return if the list hasn't been initialized.
             return;
@@ -134,7 +126,7 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
 
     }
 
-    public void Replace(INode<T> oldNode, INode<T> newNode)
+    public override void Replace(INode<T> oldNode, INode<T> newNode)
     {
         if (head is null) // Return if the list hasn't been initialized.
             return;
@@ -156,7 +148,7 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
 
     }
 
-    public void RemoveFirst()
+    public override void RemoveFirst()
     {
         if (head is null)
             return;
@@ -172,7 +164,7 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
 
     }
 
-    public void RemoveLast()
+    public override void RemoveLast()
     {
         if (head is null) // Return if the list hasn't been initialized.
             return;
@@ -186,63 +178,7 @@ public class SinglyLinkedList<T> : ILinkedList<T>, IEnumerable
 
     }
 
-    IEnumerator IEnumerable.GetEnumerator() => (IEnumerator) GetEnumerator();
-
-    public IEnumerator GetEnumerator() => 
-        new SinglyLinkedListEnum(this);
-
     #endregion
-
-    #region Classes and Structs
-    private class SinglyLinkedListEnum : IEnumerator
-    {
-        #region Fields
-        private readonly SinglyLinkedList<T> list;
-        private INode<T>? iterator;
-
-        #endregion
-
-        #region  Constructor(s)
-        public SinglyLinkedListEnum(SinglyLinkedList<T> linkedList)
-        {
-            list = linkedList;
-            iterator = list.head;
-
-        }
-
-        #endregion
-
-        #region Properties
-        public object? Current { get; private set; }
-
-        #endregion
-
-        #region Methods
-        public bool MoveNext()
-        {
-            if (iterator is null)
-                return false;
-
-            Current = iterator.Data;
-
-            iterator = iterator.Next;
-
-            return true;
-        
-        }
-
-        public void Reset()
-        {
-            iterator = list.head;
-
-        }
-
-        #endregion
-
-    }
-
-    #endregion
-
 }
 
 
