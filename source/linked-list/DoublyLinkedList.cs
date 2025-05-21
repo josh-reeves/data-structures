@@ -179,6 +179,8 @@ public class DoublyLinkedList<T> : LinkedList<T>, ILinkedList<T>, IEnumerable
 
     }
 
+    #endregion
+    
 }
 
 
