@@ -50,3 +50,6 @@ Thumbs.db
 
 # Visual Studio Code
 .vscode/
+
+# Visual Studio Binaries
+.bin/
