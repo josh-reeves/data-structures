@@ -119,7 +119,7 @@ class Program
 
             Trace.WriteLine(set.Retrieve(testValue));
 
-        }
+        } 
 
         void StackTests()
         {

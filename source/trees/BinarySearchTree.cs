@@ -2,23 +2,31 @@ namespace Trees;
 
 public class BinarySearchTree<TreeType> : Tree<TreeType>
 {
-    private INode<TreeType> template,
-                            root;
-
+    private INode<TreeType>? root;
 
     #region Constructor(s)
     public BinarySearchTree()
     {
-        template = new Node<TreeType>
-        {
-            Children = new INode<TreeType>[2]
-
-        };
-
-        root = template.Copy();
+        ChildrenPerNode = 2;
 
     }
 
     #endregion
+
+    public void Add(TreeType value)
+    {
+        if (root is null)
+        {
+            root = new Node<TreeType>(value)
+            {
+                Children = new Node<TreeType>[ChildrenPerNode]
+
+            };
+
+            return;
+
+        }
+
+    }
 
 }

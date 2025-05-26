@@ -2,29 +2,29 @@ using System.Collections;
 
 namespace LinkedList;
 
-public abstract class LinkedList<TList> : ILinkedList<TList>, IEnumerable
+public abstract class LinkedList<ListType> : ILinkedList<ListType>, IEnumerable
 {
-    protected INode<TList>? head,
+    protected INode<ListType>? head,
                             tail;
 
     public LinkedList() {}
 
     #region Properties
-    public INode<TList>? First { get => head; }
+    public INode<ListType>? First { get => head; }
 
-    public INode<TList>? Last { get => tail; }
+    public INode<ListType>? Last { get => tail; }
 
-    public abstract void Remove (INode<TList> node);
+    public abstract void Remove (INode<ListType> node);
 
-    public abstract void Remove (TList value);
+    public abstract void Remove (ListType value);
 
     public abstract void RemoveFirst();
 
     public abstract void RemoveLast();
 
-    public abstract void Replace (TList oldValue, TList newValue);
+    public abstract void Replace (ListType oldValue, ListType newValue);
 
-    public abstract void Replace (INode<TList> oldNode, INode<TList> newNode);
+    public abstract void Replace (INode<ListType> oldNode, INode<ListType> newNode);
 
     IEnumerator IEnumerable.GetEnumerator() => (IEnumerator) GetEnumerator();
 
@@ -34,10 +34,10 @@ public abstract class LinkedList<TList> : ILinkedList<TList>, IEnumerable
     #endregion
 
     #region Classes 
-    public class Node<TNode> : INode<TNode>
+    public class Node<NodeType> : INode<NodeType>
     {
         #region Constructor(s)
-        public Node(TNode data)
+        public Node(NodeType data)
         {
             Data = data;
 
@@ -46,9 +46,9 @@ public abstract class LinkedList<TList> : ILinkedList<TList>, IEnumerable
         #endregion
 
         #region Properties
-        public INode<TNode>? Prev {get; set; }
-        public INode<TNode>? Next { get; set; }
-        public TNode Data { get; set; }
+        public INode<NodeType>? Prev {get; set; }
+        public INode<NodeType>? Next { get; set; }
+        public NodeType Data { get; set; }
 
         #endregion
         
@@ -57,13 +57,13 @@ public abstract class LinkedList<TList> : ILinkedList<TList>, IEnumerable
     private class LinkedListEnum : IEnumerator
     {
         #region Fields
-        private readonly LinkedList<TList> list;
-        private INode<TList>? iterator;
+        private readonly LinkedList<ListType> list;
+        private INode<ListType>? iterator;
 
         #endregion
 
         #region  Constructor(s)
-        public LinkedListEnum(LinkedList<TList> linkedList)
+        public LinkedListEnum(LinkedList<ListType> linkedList)
         {
             list = linkedList;
             iterator = list.head;
