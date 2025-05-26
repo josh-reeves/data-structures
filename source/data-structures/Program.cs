@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using HashTable;
+using HashCollections;
 
 namespace DataStructures;
 
@@ -74,7 +74,7 @@ class Program
         {
             int[] sampleValues = new int[100000];
 
-            HashSet.HashSet<int> set = new();
+            HashCollections.HashSet<int> set = new();
             logWriter = new(Path.Combine(Directory.GetCurrentDirectory(), "set.csv"))
             {
                 AutoFlush = true

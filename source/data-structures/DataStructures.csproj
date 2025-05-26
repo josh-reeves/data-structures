@@ -8,8 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\hash-set\HashSet.csproj" />
-    <ProjectReference Include="..\hash-table\HashTable.csproj" />
+    <ProjectReference Include="..\hash-collections\HashCollections.csproj" />
     <ProjectReference Include="..\queue\Queue.csproj" />
     <ProjectReference Include="..\stack\Stack.csproj" />
   </ItemGroup>

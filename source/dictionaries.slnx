@@ -1,8 +1,8 @@
 <Solution>
   <Project Path="data-structures/DataStructures.csproj" />
-  <Project Path="hash-set/HashSet.csproj" />
+  <Project Path="hash-collections/HashCollections.csproj" />
   <Project Path="linked-list/LinkedList.csproj" />
-  <Project Path="hash-table/HashTable.csproj" />
   <Project Path="queue/Queue.csproj" />
   <Project Path="stack/Stack.csproj" />
+  <Project Path="trees/Trees.csproj" />
 </Solution>

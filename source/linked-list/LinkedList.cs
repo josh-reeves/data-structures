@@ -7,6 +7,8 @@ public abstract class LinkedList<TList> : ILinkedList<TList>, IEnumerable
     protected INode<TList>? head,
                             tail;
 
+    public LinkedList() {}
+
     #region Properties
     public INode<TList>? First { get => head; }
 
