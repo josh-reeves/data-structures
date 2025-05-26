@@ -52,5 +52,5 @@ Thumbs.db
 .vscode/
 
 # Visual Studio Binaries
-.bin/
-.debug/
+bin/
+debug/
