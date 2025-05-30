@@ -34,14 +34,14 @@ class Program
             }
             
             stopwatch.Stop();
-            Trace.WriteLine("Oxford contains " + oxford.Count + " entries.");
-            Trace.WriteLine("Oxford insertion of 100,000 elements completed in " + stopwatch.ElapsedTicks + " ticks."); // ~85K ticks.
+            Console.WriteLine("Oxford contains " + oxford.Count + " entries.");
+            Console.WriteLine("Oxford insertion of 100,000 elements completed in " + stopwatch.ElapsedTicks + " ticks."); // ~85K ticks.
             stopwatch.Reset();
             
             stopwatch.Start();
-            Trace.WriteLine(oxford[Convert.ToString(testValue)]); 
+            Console.WriteLine(oxford[Convert.ToString(testValue)]); 
             stopwatch.Stop();
-            Trace.WriteLine("Oxford retrieval completed in " + stopwatch.ElapsedTicks + " ticks."); // ~11K ticks.
+            Console.WriteLine("Oxford retrieval completed in " + stopwatch.ElapsedTicks + " ticks."); // ~11K ticks.
 
             stopwatch.Start();
 
@@ -52,20 +52,20 @@ class Program
             }
 
             stopwatch.Stop();
-            Trace.WriteLine("Dotnet contains " + dotnet.Count + " entries.");
-            Trace.WriteLine("Dotnet insertion of 100,000 elements completed in " + stopwatch.ElapsedTicks + " ticks."); // ~80K ticks.
+            Console.WriteLine("Dotnet contains " + dotnet.Count + " entries.");
+            Console.WriteLine("Dotnet insertion of 100,000 elements completed in " + stopwatch.ElapsedTicks + " ticks."); // ~80K ticks.
             stopwatch.Reset();
 
             stopwatch.Start();
-            Trace.WriteLine(dotnet[Convert.ToString(testValue)]);
+            Console.WriteLine(dotnet[Convert.ToString(testValue)]);
             stopwatch.Stop();
-            Trace.WriteLine("Dotnet retrieval completed in " + stopwatch.ElapsedTicks + " ticks."); // ~8K ticks.
+            Console.WriteLine("Dotnet retrieval completed in " + stopwatch.ElapsedTicks + " ticks."); // ~8K ticks.
 
             oxford.Add("5", "1000");
             oxford.OverWrite = true;
             oxford.Add("5", "3000");
             
-            Trace.WriteLine(oxford.GetValue("5"));
+            Console.WriteLine(oxford.GetValue("5"));
 
             
         }
@@ -106,18 +106,18 @@ class Program
 
             try
             {
-                Trace.WriteLine(set.Retrieve(testValue));
+                Console.WriteLine(set.Retrieve(testValue));
 
             }
             catch
             {
-                Trace.WriteLine("The specified value was successfully removed and cannot be retrieved.");
+                Console.WriteLine("The specified value was successfully removed and cannot be retrieved.");
 
             }
 
             set.Add(testValue);
 
-            Trace.WriteLine(set.Retrieve(testValue));
+            Console.WriteLine(set.Retrieve(testValue));
 
         } 
 
@@ -152,7 +152,7 @@ class Program
 
                 }
 
-                Trace.WriteLine(word + " is" + (isPalindrome ? " ": " not ") + "a palindrome");
+                Console.WriteLine(word + " is" + (isPalindrome ? " ": " not ") + "a palindrome");
                 
             }
 
@@ -171,7 +171,7 @@ class Program
             {
                 Thread.Sleep(10);
 
-                Trace.Write(queue.Dequeue());
+                Console.Write(queue.Dequeue());
 
             }
 
