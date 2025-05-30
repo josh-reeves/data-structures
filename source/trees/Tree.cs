@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text;
-
-namespace Trees;
+﻿namespace Trees;
 
 public abstract class Tree<TreeType> : ITree<TreeType>
 {
@@ -9,28 +6,27 @@ public abstract class Tree<TreeType> : ITree<TreeType>
     public Tree() { }
 
     #endregion
-    
-    #region Properties
-    protected uint ChildrenPerNode { get; set; }
-
-    #endregion
 
     #region Classes
     public class Node<NodeType> : INode<NodeType>
     {
+        #region Constructor(s)
         public Node(NodeType data)
         {
             Data = data;
 
         }
 
+        #endregion
+
         #region Properties
         public NodeType Data { get; set; }
 
-        /* There may be some concerns here regarding the efficiency of arrays as an underlying data structure.
-         *  Need too look into that. For now this will act as a proof of concept. 
-         *  (maybe I should use a hash set/table?)*/
-        public INode<NodeType>[]? Children { get; set; } 
+        public INode<NodeType>[]? Children { get; set; }
+
+        public INode<NodeType>? LeftChild { get => Children?[0]; }
+
+        public INode<NodeType>? RightChild { get => Children?[Children.Length - 1]; }
 
         #endregion
 
@@ -39,7 +35,7 @@ public abstract class Tree<TreeType> : ITree<TreeType>
         {
             INode<NodeType> source = this,
                             copy = new Node<NodeType>(source.Data);
-            
+
             if (source.Children is not null)
             {
                 copy.Children = new INode<NodeType>[source.Children.Length];

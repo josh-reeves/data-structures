@@ -1,32 +1,50 @@
+using System.Runtime.CompilerServices;
+
 namespace Trees;
 
 public class BinarySearchTree<TreeType> : Tree<TreeType>
 {
+    #region Fields
+    private const int childrenPerNode = 2;
+
+    private Comparer<TreeType> comparer;
     private INode<TreeType>? root;
+
+    #endregion
 
     #region Constructor(s)
     public BinarySearchTree()
     {
-        ChildrenPerNode = 2;
-
+        comparer = Comparer<TreeType>.Default;
+        
     }
 
     #endregion
 
+    #region Methods
     public void Add(TreeType value)
     {
-        if (root is null)
+        ref INode<TreeType>? current = ref root;
+
+        while (current is not null)
         {
-            root = new Node<TreeType>(value)
-            {
-                Children = new Node<TreeType>[ChildrenPerNode]
-
-            };
-
-            return;
+            if (comparer.Compare(value, current.Data) < 0)
+                current = current.LeftChild;
+            else if (comparer.Compare(value, current.Data) > 0)
+                current = current.RightChild;
 
         }
 
+        current = new Node<TreeType>(value)
+        {
+            Children = new Node<TreeType>[childrenPerNode]
+
+        };
+
+        return;
+
     }
+
+    #endregion
 
 }

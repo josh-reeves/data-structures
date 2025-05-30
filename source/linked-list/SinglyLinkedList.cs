@@ -42,11 +42,13 @@ public class SinglyLinkedList<T> : LinkedList<T>, ILinkedList<T>, IEnumerable
 
     }
 
-    public void Append(T data)
+    public override void Append(T data)
     {
         if (head is null) // Add first node to head if it hasn't already been initialized.
         {
             head = new Node<T>(data);
+
+            tail = head;
 
             return;
 
@@ -58,7 +60,32 @@ public class SinglyLinkedList<T> : LinkedList<T>, ILinkedList<T>, IEnumerable
             tail = tail.Next;
 
         tail.Next = new Node<T>(data);
-    
+
+        tail = tail.Next;
+
+    }
+
+    public override void Append(INode<T> node)
+    {
+        if (head is null) // Add first node to head if it hasn't already been initialized.
+        {
+            head = node;
+
+            tail = head;
+
+            return;
+
+        }
+
+        tail ??= head;
+
+        while (tail.Next != null)
+            tail = tail.Next;
+
+        tail.Next = node;
+
+        tail = tail.Next;
+
     }
 
     public override void Remove(INode<T> node)
@@ -80,10 +107,10 @@ public class SinglyLinkedList<T> : LinkedList<T>, ILinkedList<T>, IEnumerable
             return;
 
         previous.Next = iterator.Next;
-        
+
         if (iterator == tail)
             tail = previous;
-        
+
     }
 
     public override void Remove(T value)

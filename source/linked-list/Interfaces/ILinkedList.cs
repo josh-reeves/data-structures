@@ -6,6 +6,10 @@ public interface ILinkedList<T>
     public INode<T>? First { get; }
     public INode<T>? Last { get; }
 
+    public void Append(INode<T> node);
+
+    public void Append(T value);
+
     public void Remove(INode<T> node);
 
     public void Remove(T value);

@@ -44,11 +44,13 @@ public class DoublyLinkedList<T> : LinkedList<T>, ILinkedList<T>, IEnumerable
 
     }
 
-    public void Append(T data)
+    public override void Append(T data)
     {
         if (head is null) // Add first node to head if it hasn't already been initialized.
         {
             head = new Node<T>(data);
+
+            tail = head;
 
             return;
 
@@ -59,8 +61,6 @@ public class DoublyLinkedList<T> : LinkedList<T>, ILinkedList<T>, IEnumerable
         while (tail.Next != null)
             tail = tail.Next;
 
-        INode<T> temp = tail;
-
         tail.Next = new Node<T>(data)
         {
             Prev = tail
@@ -68,9 +68,31 @@ public class DoublyLinkedList<T> : LinkedList<T>, ILinkedList<T>, IEnumerable
         };
 
         tail = tail.Next;
-
-        tail.Prev = temp;
     
+    }
+
+    public override void Append(INode<T> node)
+    {
+        if (head is null) // Add first node to head if it hasn't already been initialized.
+        {
+            head = node;
+
+            tail = head;
+
+            return;
+
+        }
+
+        tail ??= head;
+
+        while (tail.Next != null)
+            tail = tail.Next;
+
+        tail.Next = node;
+        node.Prev = tail;
+
+        tail = node;
+            
     }
 
     public override void Remove(INode<T> node)
@@ -80,7 +102,7 @@ public class DoublyLinkedList<T> : LinkedList<T>, ILinkedList<T>, IEnumerable
             RemoveFirst();
 
             return;
-            
+
         }
 
         if (node == tail)

@@ -14,7 +14,11 @@ public abstract class LinkedList<ListType> : ILinkedList<ListType>, IEnumerable
 
     public INode<ListType>? Last { get => tail; }
 
-    public abstract void Remove (INode<ListType> node);
+    public abstract void Append(INode<ListType> node);
+
+    public abstract void Append(ListType value);
+
+    public abstract void Remove(INode<ListType> node);
 
     public abstract void Remove (ListType value);
 
