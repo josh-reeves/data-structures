@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using HashCollections;
+using Trees;
 
 namespace DataStructures;
 
@@ -13,7 +14,12 @@ class Program
             testValue = 5;
 
         StreamWriter logWriter;
-        
+
+        BinarySearchTree<int> test = new BinarySearchTree<int>();
+
+        test.Insert([5, 2, 7, 8, 12, 34, 96, 3]);
+        test.Print();
+
         HashTableTests();
         HashSetTests();
         StackTests();
@@ -66,7 +72,6 @@ class Program
             oxford.Add("5", "3000");
             
             Console.WriteLine(oxford.GetValue("5"));
-
             
         }
 

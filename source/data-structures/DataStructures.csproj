@@ -11,6 +11,7 @@
     <ProjectReference Include="..\hash-collections\HashCollections.csproj" />
     <ProjectReference Include="..\queue\Queue.csproj" />
     <ProjectReference Include="..\stack\Stack.csproj" />
+    <ProjectReference Include="..\trees\Trees.csproj" />
   </ItemGroup>
 
 </Project>

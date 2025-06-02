@@ -16,32 +16,54 @@ public class BinarySearchTree<TreeType> : Tree<TreeType>
     public BinarySearchTree()
     {
         comparer = Comparer<TreeType>.Default;
-        
+
     }
 
     #endregion
 
     #region Methods
-    public void Add(TreeType value)
+    public void Insert(TreeType value, INode<TreeType>? node = null)
     {
-        ref INode<TreeType>? current = ref root;
+        root ??= new Node<TreeType>(value, childrenPerNode);
 
-        while (current is not null)
-        {
-            if (comparer.Compare(value, current.Data) < 0)
-                current = current.LeftChild;
-            else if (comparer.Compare(value, current.Data) > 0)
-                current = current.RightChild;
+        node ??= root;
 
-        }
+        if (comparer.Compare(value, node.Data) < 0)
+            if (node.LeftChild is null)
+                node.LeftChild = new Node<TreeType>(value, childrenPerNode);
+            else
+                Insert(value, node.LeftChild);
 
-        current = new Node<TreeType>(value)
-        {
-            Children = new Node<TreeType>[childrenPerNode]
+        if (comparer.Compare(value, node.Data) > 0)
+            if (node.LeftChild is null)
+                node.LeftChild = new Node<TreeType>(value, childrenPerNode);
+            else
+                Insert(value, node.LeftChild);
 
-        };
 
-        return;
+    }
+
+    public void Insert(TreeType[] values)
+    {
+        foreach (TreeType value in values)
+            Insert(value);
+
+    }
+
+    public void Print(INode<TreeType>? current = null)
+    {
+        current ??= root;
+
+        if (current is null)
+            return;
+            
+        Console.WriteLine(current.Data);
+
+        if (current.LeftChild is not null)
+            Print(current.LeftChild);
+
+        if (current.RightChild is not null)
+            Print(current.RightChild);
 
     }
 

@@ -50,6 +50,16 @@
         "runtime": {
           "bin/placeholder/Stack.dll": {}
         }
+      },
+      "Trees/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Trees.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Trees.dll": {}
+        }
       }
     }
   },
@@ -73,13 +83,19 @@
       "type": "project",
       "path": "../stack/Stack.csproj",
       "msbuildProject": "../stack/Stack.csproj"
+    },
+    "Trees/1.0.0": {
+      "type": "project",
+      "path": "../trees/Trees.csproj",
+      "msbuildProject": "../trees/Trees.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
       "HashCollections >= 1.0.0",
       "Queue >= 1.0.0",
-      "Stack >= 1.0.0"
+      "Stack >= 1.0.0",
+      "Trees >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -115,6 +131,9 @@
             },
             "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\stack\\Stack.csproj": {
               "projectPath": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\stack\\Stack.csproj"
+            },
+            "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\trees\\Trees.csproj": {
+              "projectPath": "C:\\Users\\JoshReeves\\Documents\\repos\\data-structures\\source\\trees\\Trees.csproj"
             }
           }
         }

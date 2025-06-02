@@ -11,9 +11,11 @@ public abstract class Tree<TreeType> : ITree<TreeType>
     public class Node<NodeType> : INode<NodeType>
     {
         #region Constructor(s)
-        public Node(NodeType data)
+        public Node(NodeType data, int degree)
         {
             Data = data;
+
+            Children = new Node<NodeType>[degree];
 
         }
 
@@ -22,11 +24,11 @@ public abstract class Tree<TreeType> : ITree<TreeType>
         #region Properties
         public NodeType Data { get; set; }
 
-        public INode<NodeType>[]? Children { get; set; }
+        public INode<NodeType>[] Children { get; set; }
 
-        public INode<NodeType>? LeftChild { get => Children?[0]; }
+        public INode<NodeType> LeftChild { get => Children[0]; set => Children[0] = value; }
 
-        public INode<NodeType>? RightChild { get => Children?[Children.Length - 1]; }
+        public INode<NodeType> RightChild { get => Children[Children.Length - 1]; set => Children[Children.Length - 1] = value; }
 
         #endregion
 
@@ -34,16 +36,11 @@ public abstract class Tree<TreeType> : ITree<TreeType>
         public INode<NodeType> Copy()
         {
             INode<NodeType> source = this,
-                            copy = new Node<NodeType>(source.Data);
+                            copy = new Node<NodeType>(source.Data, source.Children.Length);
 
-            if (source.Children is not null)
-            {
-                copy.Children = new INode<NodeType>[source.Children.Length];
-
-                for (int i = 0; i < source.Children.Length; i++)
+            for (int i = 0; i < source.Children.Length; i++)
+                if (Children[i] is not null)
                     copy.Children[i] = ((Node<NodeType>)source.Children[i]).Copy();
-
-            }
 
             return copy;
 
