@@ -22,7 +22,55 @@ public class BinarySearchTree<TreeType> : Tree<TreeType>
     #endregion
 
     #region Methods
-    public void Insert(TreeType value, INode<TreeType>? node = null)
+    public void Insert(TreeType value)
+    {
+        if (root is null)
+        {
+            root = new Node<TreeType>(value, childrenPerNode);
+
+            return;
+
+        }
+
+        INode<TreeType> node = root;
+
+        // This is gross and I feel like there has to be a better non-recursive approach, but it does work.
+        while (true)
+        {
+            if (comparer.Compare(value, node.Data) < 0)
+                if (node.LeftChild is null)
+                {
+                    node.LeftChild = new Node<TreeType>(value, childrenPerNode);
+
+                    break;
+
+                }
+                else
+                    node = node.LeftChild;
+
+            if (comparer.Compare(value, node.Data) > 0)
+                if (node.RightChild is null)
+                {
+                    node.RightChild = new Node<TreeType>(value, childrenPerNode);
+
+                    break;
+
+                }
+                else
+                    node = node.RightChild;
+
+        }
+
+    }
+
+    public void Insert(TreeType[] values)
+    {
+        foreach (TreeType value in values)
+            RecursiveInsert(value);
+
+    }
+
+    public void RecursiveInsert(TreeType value, INode<TreeType>? node = null)
     {
         root ??= new Node<TreeType>(value, childrenPerNode);
 
@@ -32,21 +80,13 @@ public class BinarySearchTree<TreeType> : Tree<TreeType>
             if (node.LeftChild is null)
                 node.LeftChild = new Node<TreeType>(value, childrenPerNode);
             else
-                Insert(value, node.LeftChild);
+                RecursiveInsert(value, node.LeftChild);
 
         if (comparer.Compare(value, node.Data) > 0)
-            if (node.LeftChild is null)
-                node.LeftChild = new Node<TreeType>(value, childrenPerNode);
+            if (node.RightChild is null)
+                node.RightChild = new Node<TreeType>(value, childrenPerNode);
             else
-                Insert(value, node.LeftChild);
-
-
-    }
-
-    public void Insert(TreeType[] values)
-    {
-        foreach (TreeType value in values)
-            Insert(value);
+                RecursiveInsert(value, node.RightChild);
 
     }
 
